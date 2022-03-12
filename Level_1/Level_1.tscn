@@ -1,0 +1,298 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Assets/HUD/coin_gold.png" type="Texture" id=1]
+[ext_resource path="res://Level_1/World_tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://Level_1/Bob.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Level_1/One_way_tileset.tres" type="TileSet" id=4]
+[ext_resource path="res://Assets/background/set2_background.png" type="Texture" id=5]
+[ext_resource path="res://Assets/background/set2_tiles.png" type="Texture" id=6]
+[ext_resource path="res://Level_1/Coin2D.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/fonts/BalsamiqSans-Bold.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://Level_1/HUD.gd" type="Script" id=9]
+[ext_resource path="res://Enemy.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/WorldTiles/tileYellow_04.png" type="Texture" id=11]
+[ext_resource path="res://Spring.tscn" type="PackedScene" id=12]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 32 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0, 0, 0.368627 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color( 0, 0, 0, 0 )
+shadow_offset = Vector2( 33, 33 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 50
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 8 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 32, 32 )
+
+[node name="Level_1" type="Node2D"]
+
+[node name="Tiles_One_Way" type="TileMap" parent="."]
+show_behind_parent = true
+tile_set = ExtResource( 4 )
+collision_layer = 2
+collision_mask = 49
+format = 1
+tile_data = PoolIntArray( 262182, 0, 0, 262183, 0, 0, 327718, 1, 0, 327719, 1, 0, 393254, 1, 0, 393255, 1, 0, 458790, 1, 0, 458791, 1, 0, 524300, 0, 0, 524326, 1, 0, 524327, 1, 0, 589836, -1073741823, 0, 589862, 1, 0, 589863, 1, 0, 589874, 0, 0, 655362, -1073741823, 0, 655363, -1073741823, 0, 655364, -1073741823, 0, 655365, -1073741823, 0, 655366, -1073741823, 0, 655367, -1073741823, 0, 655368, -1073741823, 0, 655369, -1073741823, 0, 655370, -1073741823, 0, 655371, -1073741823, 0, 655372, -1073741823, 0, 655398, 1, 0, 655399, 1, 0, 655409, 1, 0, 655410, 1, 0, 720897, -1073741823, 0, 720898, 1, 0, 720908, 0, 0, 720934, 1, 0, 720935, 1, 0, 720936, 1, 0, 720937, 1, 0, 720938, 1, 0, 720942, 1, 0, 720943, 1, 0, 720944, 1, 0, 720945, 1, 0, 720946, 1, 0, 786433, -1073741823, 0, 786470, 1, 0, 786471, 1, 0, 786472, 1, 0, 786473, 1, 0, 786474, 1, 0, 786478, 1, 0, 786479, 1, 0, 786480, 1, 0, 786481, 1, 0, 851969, -1073741823, 0, 852006, 1, 0, 852007, 1, 0, 852008, 1, 0, 852009, 1, 0, 852010, 1, 0, 852014, 1, 0, 852015, 1, 0, 852016, 1, 0, 917505, -1073741823, 0, 917551, 0, 0, 983087, 1, 0 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Tiles_One_Way"]
+collision_layer = 2
+collision_mask = 49
+
+[node name="One way platform collision" type="CollisionShape2D" parent="Tiles_One_Way/StaticBody2D"]
+position = Vector2( 800, 544 )
+shape = SubResource( 1 )
+one_way_collision = true
+
+[node name="One way platform collision2" type="CollisionShape2D" parent="Tiles_One_Way/StaticBody2D"]
+position = Vector2( 3232, 608 )
+shape = SubResource( 1 )
+one_way_collision = true
+
+[node name="Tiles_Solid" type="TileMap" parent="."]
+show_behind_parent = true
+tile_set = ExtResource( 2 )
+collision_layer = 2
+collision_mask = 49
+format = 1
+tile_data = PoolIntArray( -720913, 536870912, 0, -655377, 536870912, 0, -589841, 536870912, 0, -524305, 536870912, 0, -589809, 5, 0, -589808, 2, 0, -589807, 2, 0, -589806, 2, 0, -589805, 2, 0, -589804, 2, 0, -589803, 2, 0, -589802, 2, 0, -589801, 2, 0, -589800, 2, 0, -589799, 2, 0, -589798, 2, 0, -589797, 2, 0, -589796, 2, 0, -589795, 2, 0, -589794, 2, 0, -589793, 2, 0, -589792, 2, 0, -589791, 2, 0, -589790, 2, 0, -589789, 2, 0, -589788, 2, 0, -589787, 8, 0, -458769, 536870912, 0, -524282, 536870918, 0, -524281, 536870917, 0, -524253, 1073741831, 0, -524252, 1610612750, 0, -524251, 14, 0, -524250, 8, 0, -393233, 536870912, 0, -458741, 5, 0, -458740, 8, 0, -458716, 1073741831, 0, -458715, 1610612750, 0, -458714, 14, 0, -458713, 8, 0, -327697, 536870912, 0, -393204, 536870930, 0, -393203, 8, 0, -393179, 1073741831, 0, -393178, 1610612750, 0, -393177, 536870912, 0, -393176, 8, 0, -262161, 536870912, 0, -327667, 536870930, 0, -327666, 8, 0, -327642, 1073741831, 0, -327641, 1073741837, 0, -327640, 536870912, 0, -327639, 8, 0, -196625, 536870912, 0, -262130, 536870930, 0, -262129, 6, 0, -262105, 1073741831, 0, -262104, 1610612750, 0, -262103, 14, 0, -262102, 8, 0, -131089, 536870912, 0, -196563, 7, 0, -65553, 536870912, 0, -131054, 5, 0, -131053, 6, 0, -131028, 7, 0, -131027, 536870926, 0, -17, 536870912, 0, -65493, 7, 0, -65492, 536870926, 0, -65491, 1073741838, 0, 65519, 536870912, 0, 42, 7, 0, 43, 536870926, 0, 44, 1073741838, 0, 45, 1073741834, 0, 131055, 536870912, 0, 65543, 536870918, 0, 65544, 536870917, 0, 65547, 536870918, 0, 65548, 536870914, 0, 65549, 536870917, 0, 65558, 5, 0, 65559, 6, 0, 65577, 7, 0, 65578, 536870926, 0, 65579, 1073741838, 0, 65580, 1073741834, 0, 196591, 536870912, 0, 131098, 5, 0, 131099, 6, 0, 131112, 7, 0, 131113, 536870926, 0, 131114, 1073741838, 0, 131115, 1073741834, 0, 262127, 536870912, 0, 196645, 8, 0, 327663, 536870912, 0, 262147, 536870918, 0, 262148, 536870917, 0, 262181, 14, 0, 393199, 536870912, 0, 327708, 5, 0, 327709, 6, 0, 327717, 536870912, 0, 458735, 536870912, 0, 393253, 536870912, 0, 393256, 8, 0, 524271, 536870912, 0, 458752, 536870915, 0, 458753, 536870914, 0, 458754, 536870914, 0, 458755, 536870914, 0, 458756, 536870914, 0, 458757, 536870914, 0, 458758, 536870914, 0, 458759, 536870914, 0, 458760, 536870914, 0, 458761, 536870914, 0, 458762, 536870914, 0, 458763, 8, 0, 458765, 7, 0, 458766, 3, 0, 458770, 4, 0, 458772, 4, 0, 458774, 4, 0, 458778, 5, 0, 458779, 6, 0, 458789, 536870912, 0, 458792, 14, 0, 458793, 8, 0, 589807, 536870912, 0, 524288, 536870912, 0, 524289, 536870912, 0, 524290, -1610612736, 0, 524291, -1610612736, 0, 524292, 536870912, 0, 524293, 536870912, 0, 524294, 536870912, 0, 524295, 536870912, 0, 524296, 536870912, 0, 524297, 536870912, 0, 524298, 536870912, 0, 524299, -536870898, 0, 524301, -1073741810, 0, 524302, 536870912, 0, 524306, 536870912, 0, 524308, 0, 0, 524310, 0, 0, 524325, 536870912, 0, 524328, 536870912, 0, 524329, 14, 0, 524330, 8, 0, 655343, 536870912, 0, 589824, -1610612736, 0, 589825, -1610612736, 0, 589826, -1610612736, 0, 589827, -1610612736, 0, 589828, -1610612736, 0, 589829, -1610612736, 0, 589830, -1610612736, 0, 589831, -1610612736, 0, 589832, -1610612736, 0, 589833, -1610612736, 0, 589834, -1610612736, 0, 589835, -1610612736, 0, 589837, 0, 0, 589838, 536870912, 0, 589842, 536870912, 0, 589844, 0, 0, 589846, 0, 0, 589861, 536870912, 0, 589864, 536870912, 0, 589865, 536870912, 0, 589866, 536870912, 0, 589870, 1, 0, 589871, 2, 0, 589872, 2, 0, 589873, 2, 0, 589875, 2, 0, 589876, 3, 0, 720879, 536870912, 0, 655360, -1610612736, 0, 655361, -1073741824, 0, 655373, 0, 0, 655374, 536870912, 0, 655378, 536870912, 0, 655379, 4, 0, 655380, 0, 0, 655381, 4, 0, 655382, 0, 0, 655397, 536870912, 0, 655400, 536870912, 0, 655401, 536870912, 0, 655402, 536870912, 0, 655406, 0, 0, 655407, 0, 0, 655408, 0, 0, 655411, 0, 0, 655412, 0, 0, 786415, 536870912, 0, 720896, -1610612736, 0, 720899, 2, 0, 720900, 2, 0, 720901, 2, 0, 720902, 2, 0, 720903, 2, 0, 720904, 2, 0, 720905, 2, 0, 720906, 2, 0, 720907, 2, 0, 720908, 2, 0, 720909, 0, 0, 720910, 536870912, 0, 720914, 536870912, 0, 720915, 0, 0, 720916, 0, 0, 720917, 0, 0, 720918, 0, 0, 720933, 536870912, 0, 720947, 0, 0, 720948, 0, 0, 851951, 536870912, 0, 786432, -1610612736, 0, 786434, 2, 0, 786435, -1073741824, 0, 786436, -1610612736, 0, 786437, -1610612736, 0, 786438, -1610612736, 0, 786439, -1610612736, 0, 786440, -1610612736, 0, 786441, -1610612736, 0, 786442, -1610612736, 0, 786443, -1610612736, 0, 786444, 0, 0, 786445, 0, 0, 786446, 536870912, 0, 786450, 1073741837, 0, 786451, 0, 0, 786452, 0, 0, 786453, 0, 0, 786454, 1073741838, 0, 786469, 536870912, 0, 786482, 2, 0, 786483, 0, 0, 786484, 0, 0, 917487, 536870912, 0, 851968, -1610612736, 0, 851970, 0, 0, 851971, -1610612736, 0, 851972, -1610612736, 0, 851973, -1610612736, 0, 851974, -1610612736, 0, 851975, -1610612736, 0, 851976, -1610612736, 0, 851977, -1610612736, 0, 851978, -1610612736, 0, 851979, -1610612736, 0, 851980, 0, 0, 851981, 0, 0, 851982, 536870912, 0, 851986, 1073741833, 0, 851987, 1073741837, 0, 851988, 0, 0, 851989, 1073741838, 0, 851990, 1073741832, 0, 852005, 536870912, 0, 852017, 2, 0, 852018, 0, 0, 852019, 0, 0, 852020, 0, 0, 983023, 536870912, 0, 917506, 0, 0, 917507, -1610612736, 0, 917508, -1610612736, 0, 917509, -1610612736, 0, 917510, -1610612736, 0, 917511, -1610612736, 0, 917512, -1610612736, 0, 917513, -1610612736, 0, 917514, -1610612736, 0, 917515, -1610612736, 0, 917516, 0, 0, 917517, 0, 0, 917518, 536870912, 0, 917523, 1073741833, 0, 917524, 0, 0, 917525, 1073741832, 0, 917541, 536870912, 0, 917542, 0, 0, 917543, 0, 0, 917544, 0, 0, 917545, 0, 0, 917546, 0, 0, 917550, 2, 0, 917552, 2, 0, 917553, 0, 0, 917554, 0, 0, 917555, 0, 0, 917556, 0, 0, 1048559, 536870912, 0, 1048560, 536870914, 0, 1048561, 536870914, 0, 1048562, 536870914, 0, 1048563, 536870914, 0, 1048564, 536870914, 0, 1048565, 536870914, 0, 1048566, 536870914, 0, 1048567, 536870914, 0, 1048568, 536870914, 0, 1048569, 536870914, 0, 1048570, 536870914, 0, 1048571, 536870917, 0, 1048575, 5, 0, 983040, 2, 0, 983041, 2, 0, 983042, 0, 0, 983043, 536870912, 0, 983044, 536870912, 0, 983045, 536870912, 0, 983046, 536870912, 0, 983047, 536870912, 0, 983048, 536870912, 0, 983049, 536870912, 0, 983050, 536870912, 0, 983051, 536870912, 0, 983052, 0, 0, 983053, 0, 0, 983054, 536870912, 0, 983060, 0, 0, 983077, 536870912, 0, 983078, 536870912, 0, 983079, 536870912, 0, 983080, 536870912, 0, 983081, 536870912, 0, 983082, 536870912, 0, 983086, 0, 0, 983088, 0, 0, 983089, 0, 0, 983090, 0, 0, 983091, 0, 0, 983092, 0, 0 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Purble sky" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color( 0, 0.952941, 1, 1 )
+show_behind_parent = true
+motion_mirroring = Vector2( 1280, 960 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Purble sky"]
+show_behind_parent = true
+position = Vector2( 96, -32 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 5 )
+centered = false
+
+[node name="Far blocks" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color( 0, 0.670588, 0.701961, 1 )
+show_behind_parent = true
+motion_scale = Vector2( 0.3, 0.3 )
+motion_offset = Vector2( 500, 500 )
+motion_mirroring = Vector2( 1120, 840 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Far blocks"]
+show_behind_parent = true
+scale = Vector2( 1.75, 1.75 )
+texture = ExtResource( 6 )
+centered = false
+
+[node name="Middle blocks" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color( 0, 0.952941, 1, 1 )
+show_behind_parent = true
+motion_scale = Vector2( 0.5, 0.5 )
+motion_offset = Vector2( -500, -500 )
+motion_mirroring = Vector2( 1120, 840 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Middle blocks"]
+show_behind_parent = true
+scale = Vector2( 1.75, 1.75 )
+texture = ExtResource( 6 )
+centered = false
+
+[node name="Nearby blocks" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color( 0, 0.764706, 1, 1 )
+show_behind_parent = true
+motion_scale = Vector2( 0.7, 0.7 )
+motion_mirroring = Vector2( 1120, 840 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Nearby blocks"]
+show_behind_parent = true
+scale = Vector2( 1.75, 1.75 )
+texture = ExtResource( 6 )
+centered = false
+
+[node name="Fall_zone" type="Area2D" parent="."]
+position = Vector2( 1760, 1152 )
+scale = Vector2( 282.958, -11.1345 )
+collision_layer = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fall_zone"]
+shape = SubResource( 2 )
+
+[node name="Coins" type="Node2D" parent="."]
+
+[node name="Coin1" parent="Coins" instance=ExtResource( 7 )]
+position = Vector2( 640, 416 )
+scale = Vector2( 0.56, 0.52 )
+collision_layer = 8
+
+[node name="Coin2" parent="Coins" instance=ExtResource( 7 )]
+position = Vector2( 3232, 736 )
+scale = Vector2( 0.56, 0.52 )
+collision_layer = 8
+
+[node name="Coin3" parent="Coins" instance=ExtResource( 7 )]
+position = Vector2( 288, -576 )
+scale = Vector2( 0.56, 0.52 )
+collision_layer = 8
+
+[node name="Coin4" parent="Coins" instance=ExtResource( 7 )]
+position = Vector2( 864, -448 )
+scale = Vector2( 0.56, 0.52 )
+collision_layer = 8
+
+[node name="Coin5" parent="Coins" instance=ExtResource( 7 )]
+position = Vector2( 832, -160 )
+scale = Vector2( 0.56, 0.52 )
+collision_layer = 8
+
+[node name="Coin6" parent="Coins" instance=ExtResource( 7 )]
+position = Vector2( 512, 32 )
+scale = Vector2( 0.56, 0.52 )
+collision_layer = 8
+
+[node name="Coin7" parent="Coins" instance=ExtResource( 7 )]
+position = Vector2( -992, 800 )
+scale = Vector2( 0.56, 0.52 )
+collision_layer = 8
+
+[node name="Coin8" parent="Coins" instance=ExtResource( 7 )]
+position = Vector2( 800, 672 )
+scale = Vector2( 0.56, 0.52 )
+collision_layer = 8
+
+[node name="Coin9" parent="Coins" instance=ExtResource( 7 )]
+position = Vector2( 1344, 416 )
+scale = Vector2( 0.56, 0.52 )
+collision_layer = 8
+
+[node name="Coin10" parent="Coins" instance=ExtResource( 7 )]
+position = Vector2( 1248, 608 )
+scale = Vector2( 0.56, 0.52 )
+collision_layer = 8
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource( 9 )
+
+[node name="Panel" type="Panel" parent="HUD"]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 160.0
+margin_bottom = 64.0
+custom_styles/panel = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="HUD"]
+margin_right = 61.0
+margin_bottom = 61.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="x" type="Label" parent="HUD"]
+margin_left = 64.0
+margin_right = 128.0
+margin_bottom = 60.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.811765, 0.72549, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 0.890196, 0, 1 )
+custom_colors/font_color_shadow = Color( 1, 0.937255, 0, 1 )
+text = "x"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Coins" type="Label" parent="HUD"]
+margin_left = 96.0
+margin_right = 160.0
+margin_bottom = 60.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.811765, 0.72549, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 0.890196, 0, 1 )
+custom_colors/font_color_shadow = Color( 1, 0.937255, 0, 1 )
+text = "##"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Enemys" type="Node2D" parent="."]
+
+[node name="Enemy1" parent="Enemys" instance=ExtResource( 10 )]
+position = Vector2( 896, 416 )
+detects_cliffs = false
+
+[node name="Enemy2" parent="Enemys" instance=ExtResource( 10 )]
+position = Vector2( 96, 416 )
+direction = 1
+
+[node name="Enemy3" parent="Enemys" instance=ExtResource( 10 )]
+position = Vector2( 800, 32 )
+detects_cliffs = false
+
+[node name="Enemy4" parent="Enemys" instance=ExtResource( 10 )]
+position = Vector2( 1856, 288 )
+
+[node name="Enemy5" parent="Enemys" instance=ExtResource( 10 )]
+position = Vector2( 2880, -192 )
+
+[node name="Hidden entrance" type="RigidBody2D" parent="."]
+position = Vector2( 32, 928 )
+collision_layer = 8
+collision_mask = 19
+mass = 6687.24
+gravity_scale = 22.11
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Hidden entrance"]
+texture = ExtResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hidden entrance"]
+shape = SubResource( 5 )
+
+[node name="Spring" parent="." instance=ExtResource( 12 )]
+position = Vector2( 416, 416 )
+
+[node name="Bob" parent="." instance=ExtResource( 3 )]
+position = Vector2( 512, 384 )
+scale = Vector2( 0.919945, 0.96 )
+
+[node name="Camera2D" type="Camera2D" parent="Bob"]
+scale = Vector2( 1.08702, 1.04167 )
+current = true
+limit_left = -1024
+limit_right = 4056
+limit_bottom = 1024
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+drag_margin_left = 0.3
+drag_margin_right = 0.3
+editor_draw_limits = true
+
+[connection signal="body_entered" from="Fall_zone" to="Bob" method="_on_Fall_zone_body_entered"]
+[connection signal="coin_collected" from="Coins/Coin1" to="HUD" method="_on_Coin_collected"]
+[connection signal="coin_collected" from="Coins/Coin2" to="HUD" method="_on_Coin_collected"]
+[connection signal="coin_collected" from="Coins/Coin3" to="HUD" method="_on_Coin_collected"]
+[connection signal="coin_collected" from="Coins/Coin4" to="HUD" method="_on_Coin_collected"]
+[connection signal="coin_collected" from="Coins/Coin5" to="HUD" method="_on_Coin_collected"]
+[connection signal="coin_collected" from="Coins/Coin6" to="HUD" method="_on_Coin_collected"]
+[connection signal="coin_collected" from="Coins/Coin7" to="HUD" method="_on_Coin_collected"]
+[connection signal="coin_collected" from="Coins/Coin8" to="HUD" method="_on_Coin_collected"]
+[connection signal="coin_collected" from="Coins/Coin9" to="HUD" method="_on_Coin_collected"]
+[connection signal="coin_collected" from="Coins/Coin10" to="HUD" method="_on_Coin_collected"]
